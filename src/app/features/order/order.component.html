@@ -1,0 +1,111 @@
+<!--Контейнер с формой-->
+<div class="container vh-100" id="form">
+  <h2 class="text-center fw-bold mt-5 mb-5">Сделать заказ</h2>
+  <form class="col-lg-6 mx-auto" id="myForm" [formGroup]="signInForm" (ngSubmit)="sendOrder()">
+    <!--товар-->
+    <div class="form-row row mb-4">
+      <div class="form-group">
+        <label for="inputProduct" [class]="{'text-danger' : product?.invalid && (product?.dirty || product?.touched)}">Товар</label>
+        <input type="text" class="form-control" name="productTitle" id="inputProduct"
+               [class]="{'border-danger' : product?.invalid && (product?.dirty || product?.touched)}"
+               formControlName="product" readonly>
+        <div class="text-danger" *ngIf="product?.invalid && (product?.dirty || product?.touched) && product?.errors?.['required']">
+          Вам нужно выбрать товар из нашего каталога
+        </div>
+      </div>
+    </div>
+    <div class="form-row row mb-4">
+      <!--имя-->
+      <div class="form-group col-lg-4">
+        <label for="inputName" [class]="{'text-danger' : name?.invalid && (name?.dirty || name?.touched)}">Имя</label>
+        <input type="text" class="form-control" id="inputName"
+               [class]="{'border-danger' : name?.invalid && (name?.dirty || name?.touched)}"
+               formControlName="name" required>
+        <div *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+          <div class="text-danger" *ngIf="name?.errors?.['required']">Введите имя</div>
+          <div class="text-danger" *ngIf="name?.errors?.['pattern']">Вводите только буквы</div>
+        </div>
+      </div>
+      <!--фамилия-->
+      <div class="form-group col-lg-4">
+        <label for="inputSecondName"
+               [class]="{'text-danger' : last_name?.invalid && (last_name?.dirty || last_name?.touched)}">Фамилия</label>
+        <input type="text" class="form-control" id="inputSecondName"
+               [class]="{'border-danger' : last_name?.invalid && (last_name?.dirty || last_name?.touched)}"
+               formControlName="last_name" required>
+        <div *ngIf="last_name?.invalid && (last_name?.dirty || last_name?.touched)">
+          <div class="text-danger" *ngIf="last_name?.errors?.['required']">Введите фамилию</div>
+          <div class="text-danger" *ngIf="last_name?.errors?.['pattern']">Вводите только буквы</div>
+        </div>
+      </div>
+      <!--телефон-->
+      <div class="form-group col-lg-4">
+        <label for="inputPhone"
+               [class]="{'text-danger' : phone?.invalid && (phone?.dirty || phone?.touched)}">Телефон</label>
+        <input type="text" class="form-control" id="inputPhone"
+               [class]="{'border-danger' : phone?.invalid && (phone?.dirty || phone?.touched)}"
+               formControlName="phone" required>
+        <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
+          <div class="text-danger" *ngIf="phone?.errors?.['required']">Введите номер</div>
+          <div class="text-danger" *ngIf="phone?.errors?.['pattern']">Введите корректный номер (11 цифр, можно с +)
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row row mb-4 ">
+      <!--страна-->
+      <div class="form-group col-lg-6">
+        <label for="inputCountry" [class]="{'text-danger' : country?.invalid && (country?.dirty || country?.touched)}">Страна</label>
+        <input type="text" class="form-control" id="inputCountry"
+               [class]="{'border-danger' : country?.invalid && (country?.dirty || country?.touched)}"
+               formControlName="country" required>
+        <div class="text-danger"
+             *ngIf="country?.invalid && (country?.dirty || country?.touched) && country?.errors?.['required']">Введите
+          страну
+        </div>
+      </div>
+      <!--индекс-->
+      <div class="form-group col-lg-6">
+        <label for="inputIndex" [class]="{'text-danger' : zip?.invalid && (zip?.dirty || zip?.touched)}">Индекс</label>
+        <input type="text" class="form-control" id="inputIndex"
+               [class]="{'border-danger' : zip?.invalid && (zip?.dirty || zip?.touched)}"
+               formControlName="zip" required>
+        <div class="text-danger" *ngIf="zip?.invalid && (zip?.dirty || zip?.touched) && zip?.errors?.['required']">
+          Введите Индекс
+        </div>
+      </div>
+    </div>
+    <!--адрес-->
+    <div class="form-row mb-4">
+      <div class="form-group">
+        <label for="inputAddress" [class]="{'text-danger' : address?.invalid && (address?.dirty || address?.touched)}">Адрес</label>
+        <input type="text" class="form-control" id="inputAddress"
+               [class]="{'border-danger' : address?.invalid && (address?.dirty || address?.touched)}"
+               formControlName="address" required>
+        <div *ngIf="address?.invalid && (address?.dirty || address?.touched)">
+          <div class="text-danger" *ngIf="address?.errors?.['required']">Введите адрес</div>
+          <div class="text-danger" *ngIf="address?.errors?.['pattern']">Разрешены только буквы, цифры, пробелы, дефисы и
+            слеши
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--комментарий-->
+    <div class="form-row mb-4">
+      <div class="form-group">
+        <label for="inputComment">Комментарий к заказу</label>
+        <input type="text" class="form-control" id="inputComment" formControlName="comment">
+      </div>
+    </div>
+
+    <button  class="btn btn-primary mb-5 w-30 open-popup-link" id="sendBtn" [disabled]="signInForm.invalid || signInForm.disabled">
+      Отправить
+    </button>
+    <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
+  </form>
+</div>
+
+
+<!--Блок который появляется после вместо формы после нажатия на кнопку "Отправить"-->
+<!-- mfp-hide скрывает блок. Удаляю этот класс при нажатии на кнопку Отправить. Так же удаляю форму-->
+<div id="test-popup" class="white-popup h2 fw-bold text-center vh-100 d-none">{{ successMessage }}</div>

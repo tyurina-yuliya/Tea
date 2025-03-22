@@ -1,0 +1,18 @@
+<h2 class="text-center fw-bold mb-5">Наши чайные коллекции</h2>
+
+<!--Контейнер с карточками товара-->
+<div class="container text-start" id="cardGallery">
+  <div class="row g-3">
+
+    <div class="col-lg-3" *ngFor="let product of products">
+      <div class="card">
+        <img src="{{product.image}}" class="card-img-top" alt="image1">
+        <div class="card-body">
+          <h5 class="card-title fw-bold fw-bold">{{product.title}}</h5>
+          <p class="card-text fw-normal">{{product.description | textLimitation}}</p>
+          <a [routerLink]="['/product/', product.id]" class="btn btn-primary w-50" (click)="Details(product.id)" >Подробнее</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

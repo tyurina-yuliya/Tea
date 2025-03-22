@@ -1,0 +1,17 @@
+<nav class="navbar mb-3 navbar-expand-lg bg-body-tertiary">
+  <!--Контейнер с хедером-->
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/catalog" routerLinkActive="active">Каталог</a>
+        </li>
+      </ul>
+              <form class="d-flex me-2" role="search">
+                <input class="form-control me-2" type="search" placeholder="Поиск чая" aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Найти</button>
+              </form>
+    </div>
+</nav>

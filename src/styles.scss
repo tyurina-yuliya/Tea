@@ -1,0 +1,44 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.slick-prev {
+  left: 15px;
+}
+.slick-next {
+  right: 15px;
+}
+
+.slick-prev,
+.slick-next {
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+}
+
+.slick-prev img,
+.slick-next img {
+  width: 100%;
+  height: 100%;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: url("./assets/images/accardiondown.png");
+}
+
+.accordion-button::after {
+  background-image: url("./assets/images/accardiondown.png");
+}
+
+.white-popup {
+  position: relative;
+  background: #FFF;
+  padding: 20px;
+  width: auto;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
