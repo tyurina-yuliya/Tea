@@ -3,8 +3,7 @@ Available at GitHub pages: https://tyurina-yuliya.github.io/Tea/
 # Used technologies:
 - HTML5,
 - SCSS,
-- JavaScript ES6,
-- Bootstrap,
+- Typescript,
 - Webpack,
 - Angular,
 - GitHub Pages
